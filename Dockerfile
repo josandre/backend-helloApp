@@ -6,7 +6,7 @@ COPY ["package.json", "package-lock.json", "./"]
 COPY tsconfig.json ./
 
 RUN npm install --production
-RUN npm build
+RUN npm run build
 
 COPY . .
 EXPOSE 80
