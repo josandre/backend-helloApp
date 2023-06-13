@@ -7,9 +7,11 @@ COPY tsconfig.json ./
 COPY tsoa.json ./
 
 RUN npm install --production
-RUN npm run build
 
 COPY . .
+RUN npm run build
+COPY dist ./
+
 EXPOSE 80
 
 CMD ["node", "dist/index.js"]
