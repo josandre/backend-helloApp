@@ -9,8 +9,8 @@ COPY tsoa.json ./
 RUN npm install --production
 
 COPY . .
-
-COPY --from=build dist dist
+RUN npm run build
+COPY dist ./
 
 EXPOSE 80
 
