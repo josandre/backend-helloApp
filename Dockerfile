@@ -4,6 +4,7 @@ ENV PORT 80
 
 COPY ["package.json", "package-lock.json", "./"]
 COPY tsconfig.json ./
+COPY tsoa.json ./
 
 RUN npm install --production
 RUN npm run build
