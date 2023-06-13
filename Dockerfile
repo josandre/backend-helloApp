@@ -11,8 +11,6 @@ RUN npm install -g typescript
 
 COPY . .
 RUN npm run build
-RUN ls -la
-COPY ./dist ./
 
 EXPOSE 80
 
