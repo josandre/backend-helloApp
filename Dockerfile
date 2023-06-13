@@ -8,7 +8,6 @@ COPY tsoa.json ./
 
 RUN npm install --production
 RUN npm install -g typescript
-RUN npm install -g tsc
 
 COPY . .
 RUN npm run build
