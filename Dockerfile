@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 node:16.17.1
+FROM --platform=linux/amd64 node:16.17.1 AS build
 ENV NODE_ENV = production
 ENV PORT 80
 
@@ -9,10 +9,10 @@ COPY tsoa.json ./
 RUN npm install --production
 RUN npm install -g typescript
 
-RUN ls -la
 COPY . .
-RUN npm run build
-RUN ls -la
+COPY --from=build dist ./dist
+
+RUN ls -la dist
 
 EXPOSE 80
 
