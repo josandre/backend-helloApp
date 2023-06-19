@@ -4,6 +4,7 @@ import createHttpError from "http-errors";
 import {config} from "dotenv";
 import swaggerUi from "swagger-ui-express";
 import Router from "./routes";
+import {connectionTest} from "./db/connectionManager";
 
 config();
 
@@ -36,6 +37,7 @@ const errorHandler : ErrorRequestHandler = (error, req, res, next) => {
 }
 
 app.use(errorHandler)
+connectionTest();
 
 const PORT: Number = Number(process.env.PORT) || 3000;
 const server: Server = app.listen(PORT, () => console.log(`Está en el puerto: ${PORT}`));

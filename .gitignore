@@ -17,6 +17,7 @@ tmp
 # Coverage reports
 coverage
 .env
+config.env
 
 node_modules
 bower_components
