@@ -9,7 +9,7 @@ export default class SampleController {
     @Get("/")
     public async holaMundo(): Promise<HolaMundoResponse> {
         return {
-            message: "hello world!",
+            message: "hola mundo",
         };
     }
 }
