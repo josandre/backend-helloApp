@@ -68,4 +68,4 @@ COPY --chown=node:node --from=build /usr/src/app/public ./public
 EXPOSE 80
 
 # Start the server using the production build
-CMD ["node", "dist/index.js"]
+CMD ["node", "dist/src/index.js"]
