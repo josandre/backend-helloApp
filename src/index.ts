@@ -37,7 +37,9 @@ const errorHandler : ErrorRequestHandler = (error, req, res, next) => {
 }
 
 app.use(errorHandler)
-connectionTest();
 
 const PORT: Number = Number(process.env.PORT) || 3000;
-const server: Server = app.listen(PORT, () => console.log(`Está en el puerto: ${PORT}`));
+app.listen(PORT, () => {
+    console.log(`Está en el puerto: ${PORT}`)
+    connectionTest();
+});
