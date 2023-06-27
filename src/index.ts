@@ -38,6 +38,10 @@ const errorHandler : ErrorRequestHandler = (error, req, res, next) => {
 
 app.use(errorHandler)
 
+app.use(cors({
+    origin: '*'
+}))
+
 const PORT: Number = Number(process.env.PORT) || 3000;
 app.listen(PORT, () => {
     console.log(`Está en el puerto: ${PORT}`)
