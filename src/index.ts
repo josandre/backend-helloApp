@@ -1,10 +1,10 @@
 import express, {Request, Response, NextFunction, Application, ErrorRequestHandler} from "express";
-import {Server} from "http";
 import createHttpError from "http-errors";
 import {config} from "dotenv";
 import swaggerUi from "swagger-ui-express";
 import Router from "./routes";
 import {connectionTest} from "./db/connectionManager";
+import cors from 'cors'
 
 config();
 
