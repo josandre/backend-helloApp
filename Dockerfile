@@ -58,6 +58,12 @@ USER node
 FROM node:18-alpine As production
 
 ENV PORT 80
+ENV BNAME helloApp
+ENV BUSER admin
+# TODO: Change this password and take it out of docker file... We never commit our secrets
+ENV BPASSWORD rTWOdTWO
+ENV BHOST hello-app-database.cgnhpbetjvvd.us-east-2.rds.amazonaws.com
+ENV BDIALECT mysql
 
 # Copy the bundled code from the build stage to the production image
 COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
