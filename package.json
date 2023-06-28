@@ -2,13 +2,13 @@
   "name": "componentes",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "node dist/src/index.js",
     "predev": "npm run swagger",
     "prebuild": "npm run swagger",
     "build": "tsc",
-    "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec\"",
+    "dev": "nodemon --ext js,ts,json,mjs --exec ts-node src/index.ts",
     "swagger": "tsoa spec"
   },
   "keywords": [],

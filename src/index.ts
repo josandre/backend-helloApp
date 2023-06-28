@@ -10,6 +10,7 @@ config();
 
 const app: Application = express();
 
+app.use(cors())
 app.use(express.json());
 app.use(express.static("public"));
 app.use(
@@ -38,11 +39,8 @@ const errorHandler : ErrorRequestHandler = (error, req, res, next) => {
 
 app.use(errorHandler)
 
-app.use(cors({
-    origin: '*'
-}))
 
-const PORT: Number = Number(process.env.PORT) || 3000;
+const PORT: Number = Number(process.env.PORT) || 5001;
 app.listen(PORT, () => {
     console.log(`Está en el puerto: ${PORT}`)
     connectionTest();
