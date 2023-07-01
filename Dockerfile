@@ -64,6 +64,7 @@ ENV BUSER admin
 ENV BPASSWORD rTWOdTWO
 ENV BHOST hello-app-database.cgnhpbetjvvd.us-east-2.rds.amazonaws.com
 ENV BDIALECT mysql
+ENV TOKENKEY TEAMOANTHONY
 
 # Copy the bundled code from the build stage to the production image
 COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
