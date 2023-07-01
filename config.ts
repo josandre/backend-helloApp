@@ -8,7 +8,8 @@ interface ENV {
     BUSER: string,
     BPASSWORD: string,
     BHOST: string,
-    BDIALECT: 'mysql'
+    BDIALECT: 'mysql',
+    TOKENKEY: string
 }
 
 interface Config {
@@ -16,7 +17,9 @@ interface Config {
     BUSER: string,
     BPASSWORD: string,
     BHOST: string,
-    BDIALECT: 'mysql'
+    BDIALECT: 'mysql',
+    TOKENKEY: string
+
 }
 
 const getConfig = (): ENV => {
@@ -25,7 +28,8 @@ const getConfig = (): ENV => {
         BUSER: process.env.BUSER,
         BDIALECT: process.env.BDIALECT as 'mysql',
         BHOST: process.env.BHOST,
-        BPASSWORD: process.env.BPASSWORD
+        BPASSWORD: process.env.BPASSWORD,
+        TOKENKEY: process.env.TOKENKEY
 
     }
 }
