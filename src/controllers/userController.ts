@@ -1,4 +1,4 @@
-import {Get, Query, Route} from "tsoa";
+import {Get, Post, Query, Route} from "tsoa";
 import jwt from "jsonwebtoken";
 import config from "../../config";
 import {LogInResponse} from "../models/LogInResponse";
