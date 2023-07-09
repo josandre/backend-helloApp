@@ -44,7 +44,7 @@ RUN npm run build
 
 # Set NODE_ENV environment variable
 ENV NODE_ENV production
-ENV PORT 443
+ENV PORT 80
 
 # Running `npm ci` removes the existing node_modules directory and passing in --only=production ensures that only the production dependencies are installed. This ensures that the node_modules directory is as optimized as possible
 RUN npm ci --only=production && npm cache clean --force
@@ -57,7 +57,7 @@ USER node
 
 FROM node:18-alpine As production
 
-ENV PORT 443
+ENV PORT 80
 ENV BNAME helloApp
 ENV BUSER admin
 # TODO: Change this password and take it out of docker file... We never commit our secrets
@@ -72,7 +72,7 @@ COPY --chown=node:node --from=build /usr/src/app/dist ./dist
 COPY --chown=node:node --from=build /usr/src/app/public ./public
 COPY --chown=node:node --from=build /usr/src/app/config ./dist/config
 
-EXPOSE 443
+EXPOSE 80
 
 # Start the server using the production build
 CMD ["node", "dist/src/index.js"]
