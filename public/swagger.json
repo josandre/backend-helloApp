@@ -29,34 +29,6 @@
 				],
 				"type": "object",
 				"additionalProperties": false
-			},
-			"UserRequest": {
-				"properties": {
-					"name": {
-						"type": "string"
-					},
-					"lastName": {
-						"type": "string"
-					},
-					"nickName": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
-					},
-					"password": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"name",
-					"lastName",
-					"nickName",
-					"email",
-					"password"
-				],
-				"type": "object",
-				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -140,17 +112,7 @@
 					}
 				},
 				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/UserRequest"
-							}
-						}
-					}
-				}
+				"parameters": []
 			}
 		}
 	},

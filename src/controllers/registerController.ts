@@ -1,23 +1,32 @@
-import {Body, Get, Post, Query, Route} from "tsoa";
+import {Body, Get, Post, Query, Route, Request} from "tsoa";
 import {UserRequest} from "../models/UserRequest";
+import {Request as ExpressRequest} from "express";
+import uploadFile = require( "../middleware/Upload");
+import multer, { FileFilterCallback } from "multer";
+import { dirname } from "path";
+
 const Models = require('../../models');
 const User = Models.User;
+const fs = require ("fs"); 
 
 @Route("register")
 export default class RegisterController {
 
     @Post("/")
-    public async register(@Body()req:UserRequest): Promise<any>{
-        const user = await User.build({...req, firstName: req.name}).save();
+    public async register(@Request() req:ExpressRequest): Promise<any>{
 
-        if(user)
+        let user = { ...req.body,  'avatar' : fs.readFileSync(__dirname+'\\..\\..\\Images\\' + req.file.filename) }        
+
+        const userDB = await User.build(user).save();
+
+
+        if(userDB)
         {
-            return user;
+            return {'register':'success'};
         }
+        
 
         return undefined;
     }
-
-
     
 }
