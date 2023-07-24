@@ -10,8 +10,7 @@ export const sequelize = new Sequelize(config.BNAME, config.BUSER, config.BPASSW
 export const connectionTest = async () => {
     try {
         await sequelize.authenticate();
-        console.log("connection succesfull")
     } catch (error) {
-        console.error("the connection failed", error)
+        console.error( error)
     }
 }

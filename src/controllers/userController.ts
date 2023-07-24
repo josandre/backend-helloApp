@@ -1,4 +1,4 @@
-import {Get, Post, Query, Route} from "tsoa";
+import {Get, Query, Route} from "tsoa";
 import jwt from "jsonwebtoken";
 import config from "../../config";
 import {LogInResponse} from "../models/LogInResponse";
@@ -21,10 +21,13 @@ export default class UserController {
                }
                );
            return new LogInResponse({
-               token, avatar: Buffer.from(user.avatar).toString('base64')
+               token,
+               avatar: user.avatar ? Buffer.from(user.avatar).toString('base64') : undefined
            })
         }
 
         return undefined;
     }
+
+
 }

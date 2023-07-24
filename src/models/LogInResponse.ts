@@ -1,4 +1,3 @@
-
 export class LogInResponse{
     token: string; 
     avatar: string

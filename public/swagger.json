@@ -6,18 +6,6 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"HolaMundoResponse": {
-				"properties": {
-					"message": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"message"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
 			"LogInResponse": {
 				"properties": {
 					"token": {
@@ -30,6 +18,56 @@
 				"required": [
 					"token",
 					"avatar"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UserRequest": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"lastName": {
+						"type": "string"
+					},
+					"nickName": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"lastName",
+					"nickName",
+					"email",
+					"password"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Message": {
+				"properties": {
+					"from": {
+						"type": "number",
+						"format": "double"
+					},
+					"to": {
+						"type": "number",
+						"format": "double"
+					},
+					"message": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"from",
+					"to",
+					"message"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -47,25 +85,6 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/hola-mundo": {
-			"get": {
-				"operationId": "HolaMundo",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/HolaMundoResponse"
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": []
-			}
-		},
 		"/login": {
 			"get": {
 				"operationId": "Login",
@@ -110,13 +129,46 @@
 						"description": "Ok",
 						"content": {
 							"application/json": {
-								"schema": {}
+								"schema": {
+									"$ref": "#/components/schemas/UserRequest"
+								}
 							}
 						}
 					}
 				},
 				"security": [],
 				"parameters": []
+			}
+		},
+		"/messages": {
+			"get": {
+				"operationId": "GetMessagesByUserId",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Message"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		}
 	},
