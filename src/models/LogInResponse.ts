@@ -1,6 +1,7 @@
 
 export class LogInResponse{
-    token: string
+    token: string; 
+    avatar: string
 
     constructor(partial?: Partial<LogInResponse>) {
         if(partial){

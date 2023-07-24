@@ -22,10 +22,14 @@
 				"properties": {
 					"token": {
 						"type": "string"
+					},
+					"avatar": {
+						"type": "string"
 					}
 				},
 				"required": [
-					"token"
+					"token",
+					"avatar"
 				],
 				"type": "object",
 				"additionalProperties": false
