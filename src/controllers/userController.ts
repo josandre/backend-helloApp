@@ -12,6 +12,7 @@ export default class UserController {
     @Get("/")
     public async login(@Query() email, @Query() password): Promise<LogInResponse>{
         const user = await User.findOne({where: {email: email, password: password}});
+        console.log("test")
 
         if(user)
         {
