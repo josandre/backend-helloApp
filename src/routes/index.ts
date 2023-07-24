@@ -1,20 +1,10 @@
 import express from "express";
-import SampleController from "../controllers/sample";
 import UserController from "../controllers/userController";
-import registerController from "../controllers/registerController";
 import RegisterController from "../controllers/registerController";
 import uploadFile = require("../middleware/Upload");
-
+import MessageController from "../controllers/MessageController";
 
 const router = express.Router();
-
-router.get("/hola-mundo", async (_req, res) => {
-    const controller = new SampleController();
-    const response = await controller.holaMundo();
-    return res.send(response);
-});
-
-
 router.get("/login", async (_req, res) => {
     const userController = new UserController();
     const response = await userController.login(_req.query.email, _req.query.password);
@@ -23,9 +13,8 @@ router.get("/login", async (_req, res) => {
         return res.send(response);
     }
 
-    return res.status(400).json({error: "Información invalida"})
+    return res.status(400);
 })
-
 
 router.post("/register", uploadFile.single('avatar'),async (_req, res) =>{
     const registerController = new RegisterController();
@@ -34,10 +23,18 @@ router.post("/register", uploadFile.single('avatar'),async (_req, res) =>{
     if (response){
         return res.send(response);
     }
-    
-
-    return res.status(400).json({error: "No se pudo registrar"})
+    return res.status(400);
 })
 
+router.get("/messages", async (req,res) => {
+    const messagesController = new MessageController();
+    const response = await  messagesController.getMessagesByUserId(req.query.id);
+
+    if(response){
+        return res.send(response);
+    }
+
+    return res.status(400);
+})
 
 export default router;
