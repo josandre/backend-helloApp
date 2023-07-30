@@ -17,6 +17,7 @@ router.get("/login", async (_req, res) => {
 })
 
 router.post("/register", uploadFile.single('avatar'),async (_req, res) =>{
+    console.log("ruta")
     const registerController = new RegisterController();
     const response = await registerController.register(_req);
     

@@ -16,7 +16,7 @@ export default class UserController {
 
         if(user)
         {
-           const token = jwt.sign({"id": user.idUser, "firstName": user.firstName, "secondName": user.secondName, "nickName": user.nickName, "email": user.email}, config.TOKENKEY,
+           const token = jwt.sign({"id": user.id, "firstName": user.firstName, "secondName": user.secondName, "nickName": user.nickName, "email": user.email}, config.TOKENKEY,
                {
                    expiresIn: "24h"
                }
