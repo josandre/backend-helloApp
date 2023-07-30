@@ -7,6 +7,7 @@ export class Conversation {
     date: Date
     messages: Array<Message>[]
     name: string
+    photo: string
 
     constructor(partial?: Partial<Conversation>) {
         if(partial){
