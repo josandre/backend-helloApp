@@ -31,10 +31,12 @@ export default class ConversationController {
                    id: conversation.id,
                    to: conversation.to,
                    from: conversation.from,
-                   messages: conversation.Messages,
+                   photo: userTo.avatar ? Buffer.from(userTo.avatar).toString('base64') : undefined,
+                   messages: conversation.Messages
                })
            }));
        }
+
 
        return undefined;
     }
