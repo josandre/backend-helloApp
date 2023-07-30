@@ -2,7 +2,7 @@ import express from "express";
 import UserController from "../controllers/userController";
 import RegisterController from "../controllers/registerController";
 import uploadFile = require("../middleware/Upload");
-import MessageController from "../controllers/MessageController";
+import ConversationController from "../controllers/ConversationController";
 
 const router = express.Router();
 router.get("/login", async (_req, res) => {
@@ -27,9 +27,9 @@ router.post("/register", uploadFile.single('avatar'),async (_req, res) =>{
     return res.status(400);
 })
 
-router.get("/messages", async (req,res) => {
-    const messagesController = new MessageController();
-    const response = await  messagesController.getMessagesByUserId(req.query.id);
+router.get("/conversations", async (req,res) => {
+    const conversationsController = new ConversationController();
+    const response = await  conversationsController.getConversationsByUserId(Number(req.query.id));
 
     if(response){
         return res.send(response);

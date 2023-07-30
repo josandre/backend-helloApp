@@ -11,14 +11,21 @@ module.exports = {
       },
       from: {
         type: Sequelize.INTEGER,
-        references: {model: "Users", key: "id" }
+        references:{model: 'Users', key: 'id'}
       },
       to: {
         type: Sequelize.INTEGER,
-        references: {model: "Users", key: "id" }
+        references:{model: 'Users', key: 'id'}
       },
       content: {
         type: Sequelize.STRING
+      },
+      idConversation: {
+        type: Sequelize.INTEGER,
+        references:{model: 'Conversations', key: 'id'}
+      },
+      date: {
+        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

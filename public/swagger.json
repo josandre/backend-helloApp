@@ -43,6 +43,48 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"Conversation": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"to": {
+						"type": "number",
+						"format": "double"
+					},
+					"from": {
+						"type": "number",
+						"format": "double"
+					},
+					"date": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"messages": {
+						"items": {
+							"items": {
+								"$ref": "#/components/schemas/Message"
+							},
+							"type": "array"
+						},
+						"type": "array"
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"to",
+					"from",
+					"date",
+					"messages",
+					"name"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -110,9 +152,9 @@
 				"parameters": []
 			}
 		},
-		"/messages": {
+		"/conversations": {
 			"get": {
-				"operationId": "GetMessagesByUserId",
+				"operationId": "GetConversationsByUserId",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -120,7 +162,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/Message"
+										"$ref": "#/components/schemas/Conversation"
 									},
 									"type": "array"
 								}
@@ -135,7 +177,8 @@
 						"name": "id",
 						"required": true,
 						"schema": {
-							"type": "string"
+							"format": "double",
+							"type": "number"
 						}
 					}
 				]
