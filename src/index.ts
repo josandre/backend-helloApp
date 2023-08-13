@@ -3,13 +3,15 @@ import createHttpError from "http-errors";
 import {config} from "dotenv";
 import swaggerUi from "swagger-ui-express";
 import Router from "./routes";
-import {connectionTest} from "./db/connectionManager";
 import cors from 'cors'
+import {ConversationSocket} from "./webSocket/ConversationSocket";
+import {Message} from "./models/Message";
+
+const PORT: number = Number(process.env.PORT) || 5005;
 
 config();
 
 const app: Application = express();
-
 app.use(cors())
 app.use(express.json());
 app.use(express.static("public"));
@@ -39,9 +41,6 @@ const errorHandler : ErrorRequestHandler = (error, req, res, next) => {
 
 app.use(errorHandler)
 
-
-const PORT: Number = Number(process.env.PORT) || 5005;
-app.listen(PORT, () => {
+ConversationSocket.getInstance().initialize(app, PORT, () => {
     console.log(`Está en el puerto: ${PORT}`)
-    connectionTest();
 });
