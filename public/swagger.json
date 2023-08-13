@@ -34,12 +34,22 @@
 					},
 					"message": {
 						"type": "string"
+					},
+					"idConversation": {
+						"type": "number",
+						"format": "double"
+					},
+					"date": {
+						"type": "string",
+						"format": "date-time"
 					}
 				},
 				"required": [
 					"from",
 					"to",
-					"message"
+					"message",
+					"idConversation",
+					"date"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -96,10 +106,13 @@
 	"info": {
 		"title": "componentes",
 		"version": "1.0.0",
+		"description": "Backend for a real time chat application",
 		"license": {
 			"name": "ISC"
 		},
-		"contact": {}
+		"contact": {
+			"name": "Jocselyn Aguilar"
+		}
 	},
 	"openapi": "3.0.0",
 	"paths": {
@@ -186,6 +199,35 @@
 						}
 					}
 				]
+			}
+		},
+		"/message": {
+			"post": {
+				"operationId": "CreateMessage",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Message"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Message"
+							}
+						}
+					}
+				}
 			}
 		}
 	},

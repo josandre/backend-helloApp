@@ -36,8 +36,6 @@ export default class ConversationController {
                })
            }));
        }
-
-
        return undefined;
     }
 

@@ -3,8 +3,10 @@ import UserController from "../controllers/userController";
 import RegisterController from "../controllers/registerController";
 import uploadFile = require("../middleware/Upload");
 import ConversationController from "../controllers/ConversationController";
+import MessageController from "../controllers/MessageController";
 
 const router = express.Router();
+
 router.get("/login", async (_req, res) => {
     const userController = new UserController();
     const response = await userController.login(_req.query.email, _req.query.password);
@@ -17,7 +19,6 @@ router.get("/login", async (_req, res) => {
 })
 
 router.post("/register", uploadFile.single('avatar'),async (_req, res) =>{
-    console.log("ruta")
     const registerController = new RegisterController();
     const response = await registerController.register(_req);
     
@@ -26,6 +27,15 @@ router.post("/register", uploadFile.single('avatar'),async (_req, res) =>{
     }
     return res.status(400);
 })
+
+router.post("/message", async (req, res) => {
+    const messageController = new MessageController();
+    const response = await messageController.createMessage(req.body);
+
+    return response ? res.send(response) : res.status(400);
+})
+
+
 
 router.get("/conversations", async (req,res) => {
     const conversationsController = new ConversationController();
