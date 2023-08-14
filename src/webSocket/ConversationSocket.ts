@@ -24,7 +24,7 @@ export class ConversationSocket{
         this.port = port;
         this.io = new Server(this.socketServer, {
             cors: {
-                origin: "https://www.main.d1drf5fff9ja3b.amplifyapp.com/",
+                origin: "https://www.main.d1drf5fff9ja3b.amplifyapp.com",
                 methods: ["GET", "POST"]
             }
         })
