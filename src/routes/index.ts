@@ -1,4 +1,5 @@
 import express from "express";
+import UpdateUserController from "../controllers/userControllerUpdate";
 import UserController from "../controllers/userController";
 import RegisterController from "../controllers/registerController";
 import uploadFile = require("../middleware/Upload");
@@ -35,7 +36,16 @@ router.post("/message", async (req, res) => {
     return response ? res.send(response) : res.status(400);
 })
 
+router.put("/users", uploadFile.single('avatar'), async (req, res) => {
 
+    const updateUserController = new UpdateUserController();
+    const response = await updateUserController.updateUser(req);
+
+    if (response){
+        return res.send(response);
+    }
+    return res.status(400);
+})
 
 router.get("/conversations", async (req,res) => {
     const conversationsController = new ConversationController();
