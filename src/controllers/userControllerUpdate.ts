@@ -15,10 +15,8 @@ export default class UpdateUserController {
     @Put("/")
     public async updateUser(@Request() req:ExpressRequest): Promise<any>{
 
-       
-
         const userData = jwt.verify(req.get("x-token"), config.TOKENKEY) as JwtPayload;
-        User.update({
+        await User.update({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             nickName: req.body.nickName,
