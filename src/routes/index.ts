@@ -35,10 +35,10 @@ router.post("/message", async (req, res) => {
     return response ? res.send(response) : res.status(400);
 })
 
-router.put("/users", uploadFile.single('avatar'), async (req, res) => {
+router.put("/users", async (req, res) => {
 
     const updateUserController = new UpdateUserController();
-    const response = await updateUserController.updateUser(req);
+    const response = await updateUserController.updateUser(req.body, req);
 
     if (response){
         return res.send(response);
