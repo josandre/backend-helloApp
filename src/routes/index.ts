@@ -4,6 +4,7 @@ import UserController from "../controllers/userController";
 import RegisterController from "../controllers/registerController";
 import ConversationController from "../controllers/ConversationController";
 import MessageController from "../controllers/MessageController";
+import uploadFile from "../middleware/Upload";
 
 const router = express.Router();
 
