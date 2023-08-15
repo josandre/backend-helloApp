@@ -4,6 +4,7 @@ export class User {
     nickName: string
     email: string
     password: string
+    avatar: string
 
     constructor(partial?: Partial<User>) {
         if(partial){

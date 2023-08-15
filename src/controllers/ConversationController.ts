@@ -26,12 +26,15 @@ export default class ConversationController {
                const recipient = conversation.to == id ? conversation.from : conversation.to
                const userTo = await user.findByPk(recipient);
 
+               let avatarBase64 = userTo.avatar ? Buffer.from(userTo.avatar).toString('base64') : undefined;
+               avatarBase64 = avatarBase64?.replace("dataimage/jpegbase64", "")
+
                return new Conversation({
                    name: userTo.nickName,
                    id: conversation.id,
                    to: conversation.to,
                    from: conversation.from,
-                   photo: userTo.avatar ? Buffer.from(userTo.avatar).toString('base64') : undefined,
+                   photo:avatarBase64,
                    messages: conversation.Messages
                })
            }));

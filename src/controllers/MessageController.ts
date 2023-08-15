@@ -10,7 +10,6 @@ export default class MessageController {
 
     @Post("/")
     public async createMessage(@Body() req:Message): Promise<Message>{
-        console.log(req);
         const message = await MessageModel.build({...req, content: req.message, date: new Date()}).save();
 
         if(message)
